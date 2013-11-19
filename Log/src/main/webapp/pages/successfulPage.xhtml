@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:sec="http://www.springframework.org/security/facelets/tags">
  
 <h:head>
     <title>LoggedIn - Spring Security</title>
@@ -10,15 +12,17 @@
 <h:body>
     <h:form>
         <h:messages />
+
         <h:panelGrid columns="1">
             <h:commandButton value="User page!" action="#{redirectorBean.userPage}" />
-            <h:commandButton value="Admin page!" action="#{redirectorBean.adminPage}" />
+            <sec:ifAnyGranted roles="ROLE_ADMIN">
+            	<h:commandButton value="Admin page!" action="#{redirectorBean.adminPage}" />
+            </sec:ifAnyGranted>
             <h:commandButton value="Index!" action="#{redirectorBean.index}" />
- 
+
             <br />
             <br />
- 
-            <h:commandButton value="Logout!" action="#{authenticator.logout}" />
+            <a onclick="document.location='#{request.contextPath}/j_spring_security_logout'" title="Sair">Sair</a>
         </h:panelGrid>
     </h:form>
 </h:body>

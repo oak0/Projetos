@@ -22,6 +22,11 @@
             <enabled>false</enabled>
         </snapshots>
     </repository>
+    
+    <repository>
+       <id>org.springframework.security.taglibs.facelets</id>
+       <url>http://spring-security-facelets-taglib.googlecode.com/svn/repo/</url>
+    </repository>
 </repositories>
   
   <dependencies>
@@ -109,6 +114,11 @@
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-config</artifactId>
         <version>3.2.0.RC2</version>
+    </dependency>
+	<dependency>
+    	<groupId>org.springframework.security</groupId>
+        <artifactId>facelets-taglib-jsf20-spring-3</artifactId>
+        <version>0.5</version>
     </dependency>
     <!-- EL -->
  	<dependency>

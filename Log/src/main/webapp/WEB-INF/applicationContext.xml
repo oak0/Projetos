@@ -58,6 +58,11 @@ http://www.springframework.org/schema/util/spring-util-3.2.xsd">
         <property name="password" value="capt963" />
     </bean>
  	
+ 	<bean id="loginDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>java:comp/env/jdbc/Login</value>
+		</property>
+	</bean> 	
  	
     <bean id="entityManagerFactory"
         class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"

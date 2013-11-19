@@ -5,22 +5,24 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:p="http://primefaces.org/ui">
  
+ 
 <h:head>
     <title>Login - Spring Security</title>
 </h:head>
 <h:body>
-    <h:form>
-        <h:messages />
-        <p:panel header="Login">
-        <h:panelGrid columns="2">
-            <h:outputText value="Username: " />
-            <h:inputText value="#{authenticator.username}" />
-            <h:outputText value="Password: " />
-            <p:keyboard value="#{authenticator.password}" />
-        </h:panelGrid>
-        </p:panel>
- 
-        <h:commandButton value="Logar!" action="#{authenticator.login}" />
-    </h:form>
+Motivo: #{SPRING_SECURITY_LAST_EXCEPTION.message}
+    <h:form id="login" prependId="false"
+                    onsubmit="document.#{p:component('login')}.action='#{request.contextPath}/j_spring_security_check';">
+				<h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="j_username" value="Username:" /> 
+                    <p:inputText id="j_username" required="true"/>
+                    <h:outputLabel for="j_password" value="Password:" />
+                    <p:keyboard id="j_password" required="true" password="true" />
+                    <p:commandButton value="Login" ajax="false" />
+                </h:panelGrid>
+				<script>
+					document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}"
+				</script>
+			</h:form>
 </h:body>
 </html>

@@ -1,5 +1,7 @@
 package br.com.login.service;
 
+import java.io.Serializable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +11,7 @@ import br.com.login.dao.UserDAO;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, Serializable {
 
 	@Autowired
 	private UserDAO userDAO;

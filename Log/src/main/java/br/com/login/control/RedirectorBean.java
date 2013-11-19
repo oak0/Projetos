@@ -7,18 +7,18 @@ import org.springframework.stereotype.Controller;
 @Scope("request")
 public class RedirectorBean {
     public String userPage() {
-        return "userPage";
+        return "/pages/user/userPage";
     }
  
     public String adminPage() {
-        return "adminPage";
+        return "/pages/admin/adminPage";
     }
  
     public String index() {
-        return "index";
+        return "/index";
     }
  
     public String successfulPage() {
-        return "successfulPage";
+        return "/pages/successfulPage";
     }
 }

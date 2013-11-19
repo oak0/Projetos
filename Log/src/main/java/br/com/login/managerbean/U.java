@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
 import br.com.login.beans.Role;
@@ -45,6 +46,10 @@ public class U implements Serializable{
 		rs.add(r);
 		u.setRoles(rs);
 		userService.create(u);
+	}
+	
+	public String red(){
+		return "/pages/admin/adminPage.jsf";
 	}
 	
 }
