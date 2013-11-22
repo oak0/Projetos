@@ -5,6 +5,7 @@
  
   <display-name>Log</display-name>
   
+  
   	<welcome-file-list>
         <welcome-file>index.jsf</welcome-file>
     </welcome-file-list>
@@ -24,7 +25,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
-  <!-- Spring Security -->
+  <!-- Spring Security, filters -->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -33,7 +34,7 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    <!-- Spring Security -->
+    <!-- Spring Security Concurrence control -->
  	 <listener>
     	<listener-class>
       		org.springframework.security.web.session.HttpSessionEventPublisher
@@ -46,7 +47,7 @@
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
-    <!-- Spring --> 
+    <!-- Spring, context files configuration --> 
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>

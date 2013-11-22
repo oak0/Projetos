@@ -1,10 +1,8 @@
 package br.com.login.beans;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,23 +11,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable, UserDetails{
+public class User implements Serializable{
     private static final long serialVersionUID = -7590317347612436291L;
  
     private Long id;
     private String username;
     private String password;
+    private boolean ativo = true;
     private List<Role> roles;
     
     @Id
@@ -38,8 +33,22 @@ public class User implements Serializable, UserDetails{
     public Long getId() {
         return id;
     }
- 
-    public void setId(Long id) {
+    
+    
+    @Column(name = "user_ativo")
+    public boolean isAtivo() {
+		return ativo;
+	}
+
+
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+
+
+	public void setId(Long id) {
         this.id = id;
     }
  
@@ -71,45 +80,14 @@ public class User implements Serializable, UserDetails{
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
- 
-    @Override
-    @Transient
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
-    }
- 
-    @Override
-    @Transient
-    public boolean isAccountNonExpired() {
-        // TODO Auto-generated method stub
-        return false;
-    }
- 
-    @Override
-    @Transient
-    public boolean isAccountNonLocked() {
-        // TODO Auto-generated method stub
-        return false;
-    }
- 
-    @Override
-    @Transient
-    public boolean isCredentialsNonExpired() {
-        // TODO Auto-generated method stub
-        return false;
-    }
- 
-    @Override
-    @Transient
-    public boolean isEnabled() {
-        // TODO Auto-generated method stub
-        return false;
-    }
+
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (ativo ? 1231 : 1237);
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
@@ -118,6 +96,8 @@ public class User implements Serializable, UserDetails{
 				+ ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -128,6 +108,8 @@ public class User implements Serializable, UserDetails{
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (ativo != other.ativo)
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -151,4 +133,6 @@ public class User implements Serializable, UserDetails{
 		return true;
 	}
     
+    
+
 }

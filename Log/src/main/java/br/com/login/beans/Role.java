@@ -9,14 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @NamedQuery(name="Role.findByDescription", query="SELECT r FROM Role r WHERE r.description = :desc")
 @Table(name="roles")
-public class Role implements Serializable, GrantedAuthority{
+public class Role implements Serializable{
     private static final long serialVersionUID = -3968396919486158590L;
  
     private Long id;
@@ -37,11 +34,6 @@ public class Role implements Serializable, GrantedAuthority{
     }
     public void setDescription(String description) {
         this.description = description;
-    }
-    @Override
-    @Transient
-    public String getAuthority() {
-        return description;
     }
 	@Override
 	public int hashCode() {

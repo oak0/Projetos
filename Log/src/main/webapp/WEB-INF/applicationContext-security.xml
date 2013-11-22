@@ -48,7 +48,7 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 				authorities-by-username-query="SELECT u.user_username, r.role_description FROM users u, user_roles ur, roles r 
 										WHERE u.user_id = ur.user_id and r.role_id = ur.role_id 
 										AND u.user_username = ?"
-				users-by-username-query="SELECT u.user_username, u.user_password, 'true' FROM users u
+				users-by-username-query="SELECT u.user_username, u.user_password, u.user_ativo FROM users u
 									  WHERE u.user_username = ?" />
 		</authentication-provider>
 	</authentication-manager>
