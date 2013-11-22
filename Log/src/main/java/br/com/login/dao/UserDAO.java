@@ -9,5 +9,4 @@ public interface UserDAO extends GenericDAO<User, Long> {
  
     User getById(Long id);
      
-    User login(String username, String password);
 }
